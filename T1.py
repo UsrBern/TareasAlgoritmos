@@ -2,12 +2,12 @@ def darCambio(D, n, num, resto):
     if resto == 0:
         return num
     else:
-        coinAmount = []
+        divisores = []
         i = 0
         for coin in D:
-            coinAmount[i] = n//coin
+            divisores.append(n//coin)
             i += 1
-        minDiv += min(coinAmount)
+        minDiv = min(divisores)
         num += minDiv
         darCambio(D,n,num,num%minDiv)
 
