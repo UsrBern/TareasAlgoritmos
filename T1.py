@@ -9,7 +9,7 @@ def darCambio(D, n, num, resto):
             i += 1
         minDiv = min(divisores)
         num += minDiv
-        darCambio(D,n,num,num%minDiv)
+        return min(darCambio(D,n,num,num%minDiv), )
 
 
 
