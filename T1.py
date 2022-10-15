@@ -1,11 +1,17 @@
-def darCambio(D, n):
-    if n == 0:
-        return 0
+def darCambio(D, n, num, resto):
+    if resto == 0:
+        return num
     else:
-        if n == 1:
-            return 1
-        else:
-            
+        coinAmount = []
+        i = 0
+        for coin in D:
+            coinAmount[i] = n//coin
+            i += 1
+        minDiv += min(coinAmount)
+        num += minDiv
+        darCambio(D,n,num,num%minDiv)
+
+
 
 
 
