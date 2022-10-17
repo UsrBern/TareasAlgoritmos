@@ -1,31 +1,36 @@
-def darCambio(D, n, num, resto):
+
+def removeElem(m,i): # Quita el i-esimo elemento del arreglo m y retorna el arreglo final
+    del m[i]
+    return m
+
+
+def darCambio(M, i, n, resto, monedas):
     if resto == 0:
-        return num
+        return monedas
+    elif i == 1:
+        return n//M[1]
     else:
-        divisores = []
-        i = 0
-        for coin in D:
-            divisores.append(n//coin)
-            i += 1
-        minDiv = min(divisores)
-        num += minDiv
-        return min(darCambio(D,n,num,num%minDiv), )
+        if n in M:
+            return 1
+        else:
+            return min(darCambio(removeElem(M,i-1), n, n%M[i], monedas+n//M[i]), darCambio(removeElem(M,i-1), n, n%M[i], monedas+n//M[i]))
+        
 
 
 
 
 
-n = input("Por favor ingresar valor n: ")
-while n < 0 or n is not int:
-    n = input("Valor invalido ingresado por favor reintentar.")
+n = int(input("Por favor ingresar valor n: "))
+while n < 0 or type(n) != int:
+    n = int(input("Valor invalido ingresado por favor reintentar.\n"))
 
-m = input("Por favor ingresar valor m: ")
-while m is not int:
-    m = input ("Valor ingresado invalido por favor reintentar.")
+m = int(input("Por favor ingresar valor m: "))
+while type(m) != int:
+    m = int(input("Valor invalido ingresado por favor reintentar.\n"))
 
-D = []
+M = []
 for i in range(0,m):
-    if i == 0:
-        D[i] = 1
-    else:
-        D[i] = input("Por favor ingresar ", i+1, "-esima denominacion de las monedas.")
+    print("Por favor ingresar denominacion de la moneda ",i+1,":")
+    M.append(int(input()))
+
+print(darCambio(M, m, n, -1, 0))
