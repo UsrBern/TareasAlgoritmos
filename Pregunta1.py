@@ -6,14 +6,14 @@
 
 def darCambio(n, M, monedas):
     i = len(M)-1
-    if n == 0 or len(M) == 0:
+    if n == 0 or len(M) == 0: # Si no hay vuelto o no hay monedas se retornan las monedas acumuladas hasta ahora
         return monedas
-    elif n == 1:
+    elif n == 1: # Si el vuelto es 1, se paga con una moneda de 1
         return 1
     else:
-        if n%M[i] == 0:
+        if n%M[i] == 0: # Si el n%=M[i], la cantidad de monedas necesarias para pagar n es n//M[i]
             return monedas+n//M[i]
-        else:
+        else: # recursion, se toma el camino que resulte en la menor cantidad de monedas requeridas
             return min(
                 darCambio(n-M[i]*(n//M[i]), M[:i], monedas+n//M[i]),
                 darCambio(n-M[i-1]*(n//M[i-1]), M[:i-1], monedas+n//M[i-1])
@@ -21,7 +21,7 @@ def darCambio(n, M, monedas):
 
 
 
-
+# MAIN
 
 n = int(input())
 while n < 0 or type(n) != int:
