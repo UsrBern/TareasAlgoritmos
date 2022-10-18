@@ -1,30 +1,23 @@
 
-def removeElem(m,i): # Quita el i-esimo elemento del arreglo m y retorna el arreglo final
-    temp = list(m)
-    del temp[i]
-    return temp
-
-
-# darCambio(M,i,n,resto,monedas): funcion de recursion
-# M: Arreglo con los tipos de monedas
+# darCambio(n, M, monedas): funcion de recursion
 # n: el cambio a dar
-# i: Largo del arreglo
-# resto: N%M[i], se usa para la recursion
-# monedas: cantidad de monedas requeridas para pagar el cambio n
+# M: Arreglo con los tipos de monedas
+# monedas: cantidad de monedas acumuladas hasta ahora, valor inicial = 0
 
-def darCambio(M, n, resto, monedas):
-    i = len(M)
-    if resto == 0: # si no hay resto, significa que se tiene una cantidad de monedas que puede pagar el cambio
+def darCambio(n, M, monedas):
+    i = len(M)-1
+    if n == 0 or len(M) == 0:
         return monedas
-    elif i == 1: # si solo hay un tipo de moneda, la cantidad de monedas requeridas es la division entera del cambio por el tipo de moneda
-        return n//M[0]
+    elif n == 1:
+        return 1
     else:
-        if n in M: # si hay una moneda con el mismo valor del cambio entonces solo se requiere una moneda para pagarlo
-            return 1
-        else: # recursion
-            return min(darCambio(removeElem(M,i-2), n, n%M[i-1], monedas+n//M[i-1]), # el ultimo tipo requiere menos monedas
-                       darCambio(M[:i-1], n, n%M[i-2], monedas+n//M[i-2])) # el penultimo tipo requiere menos monedas
-        
+        if n%M[i] == 0:
+            return monedas+n//M[i]
+        else:
+            return min(
+                darCambio(n-M[i]*(n//M[i]), M[:i], monedas+n//M[i]),
+                darCambio(n-M[i-1]*(n//M[i-1]), M[:i-1], monedas+n//M[i-1])
+            )
 
 
 
@@ -42,4 +35,4 @@ M = []
 for i in range(0,m):
     M.append(int(input()))
 
-print(darCambio(M, n, 1, 0))
+print(darCambio(n,M,0))
