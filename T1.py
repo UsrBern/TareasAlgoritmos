@@ -13,14 +13,14 @@ def removeElem(m,i): # Quita el i-esimo elemento del arreglo m y retorna el arre
 
 def darCambio(M, n, resto, monedas):
     i = len(M)
-    if resto == 0:
+    if resto == 0: # si no hay resto, significa que se tiene una cantidad de monedas que puede pagar el cambip
         return monedas
-    elif i == 1:
+    elif i == 1: # si solo hay un tipo de moneda, la cantidad de monedas requeridas es la division entera del cambio por el tipo de moneda
         return n//M[0]
     else:
-        if n in M:
+        if n in M: # si hay una moneda con el mismo valor del cambio entonces solo se requiere una moneda para pagarlo
             return 1
-        else:
+        else: # recursion
             return min(darCambio(removeElem(M,i-2), n, n%M[i-1], monedas+n//M[i-1]), # el ultimo tipo requiere menos monedas
                        darCambio(M[:i-1], n, n%M[i-2], monedas+n//M[i-2])) # el penultimo tipo requiere menos monedas
         
