@@ -13,7 +13,7 @@ def removeElem(m,i): # Quita el i-esimo elemento del arreglo m y retorna el arre
 
 def darCambio(M, n, resto, monedas):
     i = len(M)
-    if resto == 0: # si no hay resto, significa que se tiene una cantidad de monedas que puede pagar el cambip
+    if resto == 0: # si no hay resto, significa que se tiene una cantidad de monedas que puede pagar el cambio
         return monedas
     elif i == 1: # si solo hay un tipo de moneda, la cantidad de monedas requeridas es la division entera del cambio por el tipo de moneda
         return n//M[0]
