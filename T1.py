@@ -1,7 +1,8 @@
 
 def removeElem(m,i): # Quita el i-esimo elemento del arreglo m y retorna el arreglo final
-    del m[i]
-    return m
+    temp = list(m)
+    del temp[i]
+    return temp
 
 
 # darCambio(M,i,n,resto,monedas): funcion de recursion
