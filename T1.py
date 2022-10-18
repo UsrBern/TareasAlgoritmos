@@ -11,7 +11,8 @@ def removeElem(m,i): # Quita el i-esimo elemento del arreglo m y retorna el arre
 # resto: N%M[i], se usa para la recursion
 # monedas: cantidad de monedas requeridas para pagar el cambio n
 
-def darCambio(M, i, n, resto, monedas):
+def darCambio(M, n, resto, monedas):
+    i = len(M)
     if resto == 0:
         return monedas
     elif i == 1:
@@ -40,4 +41,4 @@ M = []
 for i in range(0,m):
     M.append(int(input()))
 
-print(darCambio(M, m, n, 1, 0))
+print(darCambio(M, n, 1, 0))
